@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Api TodoList de MiTarea Puebla</title>
+<link href="estilos/css/nav_vertic.css" rel="stylesheet" type="text/css" >
+<link href="estilos/css/center.css" rel="stylesheet" type="text/css" >
+</head>
+<body background="img/Cool Sky.jpg">
+
+<div id="mySidenav" class="sidenav">
+   
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav() ">×</a>
+  <a href=""><center><img src="img/person.png"></center></a>
+  <p><center>Patricio Capa</center></p>
+  <p><center>patricio@iberopuebla.mx</center></p>
+  <a href="#">Inicio</a>
+  <a href="#">Calendario</a>
+  <a href="#">Cursos</a>
+  <a href="#">Tareas</a>
+</div>
+
+
+
+
+<span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+
+<div id="myDIV" class="header">
+    <h2><center>Api To Do List</center></h2>
+    <input type="text" id="myInput" placeholder="Nombre de la tarea">
+    <span onclick="newElement()" class="addBtn">Añadir tarea</span>
+</div>
+
+  <div >
+    
+            <ul id="myUL">
+                <li>Tarea 1</li>
+                
+                <li>N/A</li>
+                </ul>
+  </div>
+  <script>
+  
+  var myNodelist = document.getElementsByTagName("LI");
+  var i;
+  for (i = 0; i < myNodelist.length; i++) {
+    var span = document.createElement("SPAN");
+    var txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(txt);
+    myNodelist[i].appendChild(span);
+  }
+
+  var close = document.getElementsByClassName("close");
+  var i;
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+
+  var list = document.querySelector('ul');
+  list.addEventListener('click', function(ev) {
+    if (ev.target.tagName === 'LI') {
+      ev.target.classList.toggle('checked');
+    }
+  }, false);
+  
+  function newElement() {
+    var li = document.createElement("li");
+    var inputValue = document.getElementById("myInput").value;
+    var t = document.createTextNode(inputValue);
+    li.appendChild(t);
+    if (inputValue === '') {
+      alert("Debes ingresar una tarea");
+    } else {
+      document.getElementById("myUL").appendChild(li);
+    }
+    document.getElementById("myInput").value = "";
+  
+    var span = document.createElement("SPAN");
+    var txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(txt);
+    li.appendChild(span);
+  
+    for (i = 0; i < close.length; i++) {
+      close[i].onclick = function() {
+        var div = this.parentElement;
+        div.style.display = "none";
+      }
+    }
+  }
+  </script>
+   
+</body>
+</html> 
